@@ -25,13 +25,12 @@ const PROJECT = {
     {
       id:'arm', name:'ARM Controller', owners:['Xi','Sujan'], colour:'#6366f1',
       tasks:[
-        { name:'Board bring-up and BSP',                 start:'2026-06-01', end:'2026-07-10', progress:100 },
-        { name:'Peripheral drivers (SPI, I2C, ADC)',     start:'2026-06-22', end:'2026-08-28', progress:100 },
-        { name:'Laser control loop',                     start:'2026-08-03', end:'2026-10-16', progress:55 },
-        { name:'Safety interlocks and fault handling',   start:'2026-09-07', end:'2026-11-27', progress:25, risk:true, note:'Placeholder. Gated on hazard analysis sign-off.' },
-        { name:'ARM to Display comms protocol',          start:'2026-09-21', end:'2026-11-13', progress:10 },
-        { name:'Firmware release candidate',             start:'2027-01-11', end:'2027-03-26', progress:0 },
-        { name:'Field firmware hardening',               start:'2027-03-29', end:'2027-05-28', progress:0 }
+        { name:'Code review',                             start:'2026-09-01', end:'2026-09-11', progress:0 },
+        { name:'Code cleanup (commented sections)',       start:'2026-09-07', end:'2026-09-18', progress:0 },
+        { name:'Fixing static code analysis results',     start:'2026-09-14', end:'2026-09-25', progress:0 },
+        { name:'HW abstraction layer',                    start:'2026-09-21', end:'2026-09-30', progress:0 },
+        { name:'HAL: Windows simulation for testing',     start:'2026-09-21', end:'2026-09-30', progress:0 },
+        { name:'Convert all .hpp headers to .h',          start:'2026-09-21', end:'2026-09-30', progress:0 }
       ]
     },
     {
@@ -49,25 +48,17 @@ const PROJECT = {
     {
       id:'yocto', name:'Yocto and Software Updates', owners:['Falguni'], colour:'#10b981',
       tasks:[
-        { name:'Yocto layer and BSP baseline',           start:'2026-06-01', end:'2026-08-14', progress:100 },
-        { name:'Kernel and device tree tuning',          start:'2026-07-20', end:'2026-10-02', progress:70 },
-        { name:'Image hardening and read-only rootfs',   start:'2026-09-14', end:'2026-11-27', progress:15, risk:true, note:'Placeholder. Needs the partition layout decision.' },
-        { name:'OTA update agent',                       start:'2026-10-12', end:'2027-01-15', progress:0 },
-        { name:'A/B partitions and rollback',            start:'2026-12-07', end:'2027-02-26', progress:0 },
-        { name:'Signed update pipeline',                 start:'2027-02-01', end:'2027-04-09', progress:0 },
-        { name:'Update soak on fleet units',             start:'2027-04-12', end:'2027-05-28', progress:0 }
+        { name:'Consolidate Yocto recipes into automated build',            start:'2026-09-01', end:'2026-09-18', progress:0 },
+        { name:'Real-time clock management between Display and Controller', start:'2026-09-14', end:'2026-09-30', progress:0 },
+        { name:'Generate SBOM using Yocto',                                 start:'2026-10-01', end:'2026-10-16', progress:0, note:'Placeholder dates, awaiting confirmation.' }
       ]
     },
     {
       id:'lic', name:'Licensing and GUI Automation', owners:['Andy'], colour:'#f59e0b',
       tasks:[
-        { name:'Licence key scheme design',              start:'2026-06-15', end:'2026-07-24', progress:100 },
-        { name:'Activation and offline fallback',        start:'2026-07-27', end:'2026-10-09', progress:60 },
-        { name:'GUI automation harness',                 start:'2026-08-17', end:'2026-11-06', progress:45 },
-        { name:'Entitlement enforcement in GUI',         start:'2026-09-28', end:'2026-12-11', progress:10 },
-        { name:'Regression suite build-out',             start:'2026-11-09', end:'2027-02-12', progress:0 },
-        { name:'CI integration and nightly runs',        start:'2027-01-18', end:'2027-03-19', progress:0 },
-        { name:'Automation coverage report',             start:'2027-03-22', end:'2027-05-07', progress:0 }
+        { name:'License implementation for tip bypass', start:'2026-09-21', end:'2026-09-30', progress:0 },
+        { name:'Generate tree for modality and application scope', start:'2026-09-21', end:'2026-09-30', progress:0 },
+        { name:'Select application for initial test suite',        start:'2026-09-21', end:'2026-09-30', progress:0 }
       ]
     },
     {
@@ -84,12 +75,24 @@ const PROJECT = {
     {
       id:'pcba', name:'Controller PCBA Test Suite', owners:['Sahil'], colour:'#a855f7',
       tasks:[
-        { name:'Test requirements and coverage matrix',  start:'2026-07-06', end:'2026-08-28', progress:100 },
-        { name:'Fixture design and build',               start:'2026-08-17', end:'2026-11-13', progress:50, risk:true, note:'Placeholder. Long lead items on the fixture BOM.' },
-        { name:'Functional test scripts',                start:'2026-10-05', end:'2027-01-08', progress:5 },
-        { name:'Calibration and trim routines',          start:'2026-12-07', end:'2027-02-26', progress:0 },
-        { name:'Production data logging',                start:'2027-02-01', end:'2027-03-26', progress:0 },
-        { name:'Line trial and handover to MFG',         start:'2027-04-05', end:'2027-05-21', progress:0 }
+        { name:'AVV-570 ADC Test Block',                                            start:'2026-07-06', end:'2026-08-16', progress:100 },
+        { name:'AVV-572 Error Handling Test Block - IOEXP2',                        start:'2026-07-22', end:'2026-09-01', progress:100 },
+        { name:'AVV-581 Error Handling Test Block - DAC1',                          start:'2026-08-08', end:'2026-09-18', progress:100 },
+        { name:'AVV-675 DAC1 Test Block',                                           start:'2026-08-24', end:'2026-10-04', progress:100 },
+        { name:'AVV-677 Safety CPU Boot Pin Test',                                  start:'2026-09-09', end:'2026-10-20', progress:100 },
+        { name:'AVV-686 Miscellaneous Firmware related Tasks',                      start:'2026-09-25', end:'2026-11-05', progress:100 },
+        { name:'AVV-698 SafetyBL testing via IO pins',                              start:'2026-10-12', end:'2026-11-22', progress:100 },
+        { name:'AVV-571 IOEXP1 Test Block',                                         start:'2026-10-28', end:'2026-12-08', progress:50 },
+        { name:'AVV-736 Integrate existing test firmware into TelNet Application',  start:'2026-11-13', end:'2026-12-24', progress:50 },
+        { name:'AVV-589 Error Handling Test Block - IOEXP1',                        start:'2026-11-30', end:'2027-01-10', progress:0 },
+        { name:'AVV-590 Error Handling Test Block - ADC1',                          start:'2026-12-16', end:'2027-01-26', progress:0 },
+        { name:'AVV-714 Validate BBLINK SPI',                                       start:'2027-01-01', end:'2027-02-11', progress:0 },
+        { name:'AVV-747 I2C Test Block',                                            start:'2027-01-18', end:'2027-02-28', progress:0 },
+        { name:'AVV-748 BBL Interface Block',                                       start:'2027-02-03', end:'2027-03-16', progress:0 },
+        { name:'AVV-749 Merge primary branch back into main',                       start:'2027-02-19', end:'2027-04-01', progress:0 },
+        { name:'AVV-750 Markup schematic with inconsitencies/errors',               start:'2027-03-07', end:'2027-04-17', progress:0 },
+        { name:'AVV-751 Add version information to allow release tracking',         start:'2027-03-24', end:'2027-05-04', progress:0 },
+        { name:'AVV-752 Basic support for command line interface',                  start:'2027-04-09', end:'2027-05-20', progress:0 }
       ]
     },
     {

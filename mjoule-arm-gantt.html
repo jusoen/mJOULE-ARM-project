@@ -51,7 +51,7 @@
 
   /* Gantt frame. The frame scrolls in both axes so the header can stick to its top
      and the task column can stick to its left. */
-  #frame{overflow:auto; max-height:min(74vh,880px); position:relative;}
+  #frame{overflow:auto; max-height:min(92.5vh,1100px); position:relative;}
   .row{display:flex; align-items:stretch; min-width:min-content; position:relative; z-index:1;}
   .lcell{position:sticky; left:0; z-index:20; background:var(--surface);
          border-right:1px solid var(--line);
@@ -246,7 +246,6 @@
   <section id="detail" class="card p-4 mt-4 hidden"></section>
 
   <footer class="mt-5 flex flex-wrap items-center justify-between gap-3 text-xs" style="color:var(--faint)">
-    <div>A hatched fill marks a completed task, a dashed outline marks one at risk, and the navy rule is today.</div>
     <div class="mono" id="stamp"></div>
   </footer>
 </div>
@@ -700,11 +699,11 @@ function render(){
     if (isCol) return;
 
     visible.forEach(function(t){
-      rows += '<div class="row trow" style="height:40px;border-top:1px solid var(--grid)">' +
-        '<div class="lcell" style="width:' + LEFT_W + 'px;flex:none">' +
+      rows += '<div class="row trow" style="min-height:40px;border-top:1px solid var(--grid)">' +
+        '<div class="lcell" style="width:' + LEFT_W + 'px;flex:none;padding-top:5px;padding-bottom:5px">' +
           '<span class="w-3 flex-none"></span>' +
           '<span class="min-w-0 flex-1">' +
-            '<span class="block text-[12.5px] truncate" title="' + esc(t.name) + '">' + esc(t.name) +
+            '<span class="block text-[12.5px] leading-snug break-words" title="' + esc(t.name) + '">' + esc(t.name) +
               (t.risk ? ' <span style="color:var(--alert)" title="At risk">&#9679;</span>' : '') +
               (t.overdue ? ' <span style="color:var(--alert)" title="Past due">&#9650;</span>' : '') +
             '</span>' +
